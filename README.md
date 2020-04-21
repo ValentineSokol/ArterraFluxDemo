@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +67,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+=======
+# ArterraFluxDemo
+The adaptation of a Flux demo for Arterra.
+# Important Notes:
+1) Please note that all markets are stored locally, so you will need to create them in order to use the app.
+1) I made the Admin Panel accessible for any signed in user just for convenient testing.
+2) the "Delete" button in an admin panel just deletes market id from localStorage. The real app does not need to delete Flux markets.
+>>>>>>> dfd9c2e7292789ba2d8feca1de72c5933fc2abb8
