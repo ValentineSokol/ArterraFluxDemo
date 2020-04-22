@@ -10,10 +10,6 @@ const Market = styled.div`
 
 `;
 const OwnerPortalMarket = ({ market }) => {
-	useEffect = () => {
-		if (!market.resoluted && )
-		removeMarket();
-	}
 	const [loads, setLoads] = useState(false);
 	const [{flux}, dispatch] = useContext(FluxContext);
 	const deleteMarket = () => removeMarket(market.id);
