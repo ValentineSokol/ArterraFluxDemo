@@ -6,7 +6,6 @@ import ExtraInfo from './ExtraInfo.js';
 import OutcomeButton from './OutcomeButton.js';
 import UserPositions from './UserPositions/UserPositions.js';
 import ResolutionDate from './ResolutionDate.js';
-import { WebSocketContext } from '../../WSProvider';
 import { FluxContext } from '../../FluxProvider';
 
 const ButtonSection = styled.div`
@@ -74,36 +73,29 @@ const MarketContent = ({...props}) => {
 	const [market, setMarket] = useState(props.market);
 	const [showPositions, setShowPositions] = useState(false);
 	const { end_time, description, outcomes, outcome_tags, extra_info } = market;
-	const [ socket, _ ] = useContext(WebSocketContext);
+
+	useEffect(() => {
+	
+		getAndSetMarketPrices();
+	
+	}, []);
+
 
 	const getAndSetMarketPrices = async () => {
+		try {
 		const marketOrders = await market.getMarketPrices()
 		setMarketOrders(marketOrders)
+		}
+		catch(err) {
+			alert('Something went wrong! Look up the console');
+			console.error(err);
+		}
 	}
 
 	const getAndSetOrderbook = async () => {
 		market.orderbooks = await market.getOrderbooks();
 		setMarket(market);
 	}
-
-	/*
-	useEffect(() => {
-		let unmounted = false;
-		socket.on("order_placed", ({marketId, accountId}) => {
-			if (marketId === market.id) {
-				getAndSetMarketPrices();
-				if (accountId === flux.getAccountId()) {
-					getAndSetOrderbook();
-				}
-			}
-		});
-		if (!unmounted) getAndSetMarketPrices();
-		return () => {
-      unmounted = true; 
-    };
-	}, [])
-	*/
-
 	let buttons = [];
 	if (outcomes > 2) {
 		buttons = outcome_tags.map((tag, i) => (
@@ -114,7 +106,6 @@ const MarketContent = ({...props}) => {
 			buttons.push(<OutcomeButton market={market} price={marketOrders[i]} label={i === 0 ? "NO" : "YES" } binary index={i} key={i} />)
 		}
 	}
-
 	return (
 		<div>
 			<TopSection>
@@ -128,7 +119,7 @@ const MarketContent = ({...props}) => {
 			<HeaderSection>
 				<FirstHeader>contract</FirstHeader>
 				<SecondHeader>last price traded</SecondHeader>
-				<ThirdHeader>market price</ThirdHeader>
+				<ThirdHeader>market price:</ThirdHeader>
 			</HeaderSection>
 			<ButtonSection>
 				{buttons}

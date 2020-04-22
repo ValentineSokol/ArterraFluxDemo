@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { DARK_BLUE } from '../../../constants';
-import fluxLogo from './../../../assets/flux-logo.png'
+import fluxLogo from './../../../assets/logo.png'
 const Container = styled.div`
 
 `;
@@ -17,8 +17,8 @@ const Title = styled.div`
 `;
 
 const FluxLogo = styled.img`
-	height: 75px;
-	width: 75px;
+	height: 125px;
+	width: 125px;
 	display: block;
 	padding-top: 15px;
 	margin: auto;

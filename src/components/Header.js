@@ -1,17 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
-import fluxLogo from '../assets/flux-logo.png';
+import fluxLogo from '../assets/logo.png';
 import styled from 'styled-components';
 import { daiToDollars } from '../utils/unitConvertion';
 import { DARK_GRAY, WHITE, DARK_BLUE } from '../constants';
 import { FluxContext } from './FluxProvider';
 
 const Logo = styled.img`
-	width: 12%;
 	display: inline-block;
 	align-self: center;
-	@media (min-width: 560px) {
-		max-width: 55px;	
-	}
+	width: 13%;
+
 `
 
 const HeaderContainer = styled.header`

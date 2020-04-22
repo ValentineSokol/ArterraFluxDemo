@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PINK } from '../constants';
+import { DARK_BLUE } from '../constants';
 
 const Spinner = styled.div `
 	display: inline-block;
@@ -21,7 +21,7 @@ const Spinner = styled.div `
 		width: 6px;
 		height: 6px;
 		border-radius: 50%;
-		background: ${PINK};
+		background: ${DARK_BLUE};
 		margin: -4px 0 0 -4px;
 	}
 	& div:nth-child(1) {

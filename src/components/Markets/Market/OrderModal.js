@@ -6,10 +6,9 @@ import OrderLoader from './OrderLoader';
 import { OrderContext } from '../../OrderProvider';
 import { FluxContext } from '../../FluxProvider';
 import { dollarsToDai } from '../../../utils/unitConvertion';
-import { WebSocketContext } from '../../WSProvider';
+import { updateMarket } from '../../../utils/marketsUtils';
 
 function OrderModal() {
-	const [ socket, dispatchSocket ] = useContext(WebSocketContext);
 	const [ orderContext, dispatchOrderContext ] = useContext(OrderContext);
 	const [ {flux}, dispatchFlux ] = useContext(FluxContext);
 	const [ loading, setLoading ] = useState(false);
@@ -20,7 +19,8 @@ function OrderModal() {
 	
 	const closeModal = () => {
 		setOrderRes(null);
-		dispatchOrderContext({type: 'stopOrderPlacement'})
+		dispatchOrderContext({type: 'stopOrderPlacement'});
+		window.location.reload();
 	};
 
 	const placeOrder = async (price, spend) => {
@@ -30,11 +30,12 @@ function OrderModal() {
 
 		try {
 			const res = await flux.placeOrder(market.id, orderContext.outcome, dollarsToDai(spend), parseInt(price)).catch(err => console.error(err));
-		//	socket.emit('order_placed', { marketId: market.id, accountId: flux.getAccountId() })
 			const updatedBalance = await flux.getFDaiBalance().catch(err => console.error(err));
 			dispatchFlux({type: "balanceUpdate", payload: {balance: updatedBalance}});
 			setOrderRes({error: false, tx: res.transaction.hash});
+
 		} catch (err){
+			console.error(err);
 			setOrderRes({error: true})
 		}
 		setLoading(false);

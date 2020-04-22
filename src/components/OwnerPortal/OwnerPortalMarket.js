@@ -1,24 +1,34 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import BN from 'bn.js';
 import { FluxContext } from '../FluxProvider';
 import { PRE_PAID_GAS } from './../../constants';
 import { removeMarket } from './../../utils/marketsUtils';
+import Loader from '../Loader';
 
 const Market = styled.div`
 
 `;
-
-const deleteMarket = id => removeMarket(id);
-const OwnerPortalMarket = ({market}) => {
+const OwnerPortalMarket = ({ market }) => {
+	useEffect = () => {
+		if (!market.resoluted && )
+		removeMarket();
+	}
+	const [loads, setLoads] = useState(false);
 	const [{flux}, dispatch] = useContext(FluxContext);
+	const deleteMarket = () => removeMarket(market.id);
 	const resolute = async (winningOutcome) => {
 		console.log("resoluting...");
 		try {
+			setLoads(true);
 			await flux.resolute(market.id, winningOutcome);
 		} 
 		catch (err){
 			console.error(err)
+		}
+		finally {
+			setLoads(false);
+			window.location.reload();
 		}
 	}
 
@@ -30,6 +40,8 @@ const OwnerPortalMarket = ({market}) => {
 	
 	}
 	return (
+		<>
+		{loads && <Loader />}
 		<Market>
 			<p>{market.id}. {market.description}</p>
 			{!market.resoluted ? 
@@ -46,6 +58,7 @@ const OwnerPortalMarket = ({market}) => {
 			
 			<button onClick={deleteMarket}> Delete</button>
 		</Market>
+		</>
 	);
 };
 

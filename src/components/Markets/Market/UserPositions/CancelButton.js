@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from './../OutcomeButton';
-import { DARK_BLUE, PINK } from '../../../../constants';
+import { DARK_BLUE, DARK_GRAY } from '../../../../constants';
 import { daiToDollars } from '../../../../utils/unitConvertion';
 
 const ButtonData = styled.span`
@@ -33,8 +33,8 @@ export default ({order, label, selected, setSelected, cancelOrder}) => {
 	const [canceled, setCanceled] = useState(false);
 
 	const ColoredButton = styled(Button)`
-		border: 1px solid ${selected ? PINK : DARK_BLUE};
-		background-color: ${selected ? PINK : "white"};
+		border: 1px solid ${selected ? DARK_BLUE : DARK_GRAY };
+		background-color: ${selected ? DARK_BLUE : "white"};
 		color: ${selected ? "white" : DARK_BLUE};
 		margin: 10px 0 ;
 

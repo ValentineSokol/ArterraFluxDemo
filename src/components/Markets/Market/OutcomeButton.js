@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { DARK_BLUE, PINK, BLUE } from '../../../constants';
+import { DARK_BLUE, DARK_GRAY , BLUE } from '../../../constants';
 import { OrderContext } from '../../OrderProvider';
 
 export const Button = styled.button`
@@ -46,7 +46,7 @@ font-weight: bold;
 
 const OutcomeButton = ({label, binary, index, market, price}) => {
 	const [orderModal, dispatch] = useContext(OrderContext)
-	const color = binary ? index === 0 ? PINK : BLUE : DARK_BLUE;
+	const color = binary ? index === 0 ? DARK_GRAY : BLUE : DARK_BLUE;
 	const lastTradedPrice = market.last_price_for_outcomes[index];
 	const hasLastTradedPrice = !!lastTradedPrice;
 

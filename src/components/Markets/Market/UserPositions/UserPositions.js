@@ -53,7 +53,7 @@ const CancelButton = styled(ModalButton)`
 	bottom: 3%;
 `;
 
-const UserPositions = ({closeModal, market, accountId}) => {
+const UserPositions = ({closeModal, market, accountId, updateMarketOrders}) => {
 	const [{flux}, dispatch] = useContext(FluxContext)
 	const [orders, setOrders] = useState(null);
 

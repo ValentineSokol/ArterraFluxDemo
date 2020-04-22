@@ -6,6 +6,7 @@ import { Description } from './MarketContent';
 import { capitalize } from '../../../utils/stringManipulation';
 import { daiToDollars } from '../../../utils/unitConvertion';
 import { FluxContext } from '../../FluxProvider';
+import {removeMarket} from '../../../utils/marketsUtils';
 
 const ResolutedContainer = styled.div`
 	display: block;
@@ -37,8 +38,6 @@ const ClaimButton = styled.button`
 	bottom: 25px;
 	margin: 25px 0;
 `;
-
-
 const ResolutedSection = ({market}) => {
 	const [{flux}, dispatch] = useContext(FluxContext);
 
@@ -47,12 +46,27 @@ const ResolutedSection = ({market}) => {
 		dispatch({type: "balanceUpdate", payload: {balance: updatedBalance}});
 	}
 	const [claimable, setClaimable] = useState(null);
-	const updateClaimable = () => flux.getClaimable(market.id, flux.getAccountId()).then(res => setClaimable(res));
+	const updateClaimable = () => {
+		const claimableAmount = flux.getClaimable(market.id, flux.getAccountId()).then(res => setClaimable(res));
+		return claimableAmount;
+	}
 
 	const onClaimClick = async () => {
-		await flux.claimEarnings(market.id, flux.getAccountId());
-		updateClaimable();
-		updateBalance();
+		if (canClaim === false) return;
+		setCanClaim(false);
+		setLoads(true);
+		try {
+			await flux.claimEarnings(market.id, flux.getAccountId());
+			updateClaimable();
+			updateBalance();
+		}
+		catch(e) {
+			alert('Something went wrong. Look into the console!');
+			console.error(e);
+		}
+		removeMarket(market.id);
+		setLoads(false);
+		setCanClaim(true);
 	}
 
 	useEffect(() => {
@@ -62,6 +76,8 @@ const ResolutedSection = ({market}) => {
 			mounted = true;
 		};
 	}, []);
+	const [loads, setLoads] = useState(false);
+	const [canClaim, setCanClaim] = useState(true);
 
 	let resolution;
 	if (market.outcomes === 2) {
@@ -80,7 +96,7 @@ const ResolutedSection = ({market}) => {
 				Resolution: <Resolution>{resolution}</Resolution>
 			</ResolutionTitle>
 
-			<ClaimButton onClick={onClaimClick}>Claim ${daiToDollars(claimable)}</ClaimButton> 
+			<ClaimButton onClick={onClaimClick}> {loads? 'Working...' : `Claim $${daiToDollars(claimable)}`}</ClaimButton> 
  	</ResolutedContainer>
 	);
 };

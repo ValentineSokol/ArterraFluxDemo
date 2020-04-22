@@ -6,22 +6,15 @@ import OrderModal from './Markets/Market/OrderModal';
 import Loader from './Loader';
 import { FluxContext, connect } from './FluxProvider';
 import { OrderProvider } from './OrderProvider';
-import { API_URL } from '../constants';
-//import socketIOClient from "socket.io-client";
-//import { WebSocketContext } from './WSProvider';
 import {getMarkets} from '../utils/marketsUtils';
-
-//const ws = socketIOClient(API_URL);
 
 function App({...props}) {
   const [{flux}, dispatch] = useContext(FluxContext);
-  //const [socket, dispatchSocket] = useContext(WebSocketContext);
   const [markets, setMarkets] = useState([]);
 
   const specificId = props.match.params.marketId;
   
   useEffect(() => {
-   // dispatchSocket({type: "webSocketConnected", payload: ws});
     connect().then( async fluxInstance => {
       dispatch({type: 'connected', payload: {flux: fluxInstance}});
       let marketIds = [];
