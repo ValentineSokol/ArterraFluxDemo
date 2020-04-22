@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.js": "/ArterraFluxDemo/static/js/main.6f8d26ba.chunk.js",
+    "main.js.map": "/ArterraFluxDemo/static/js/main.6f8d26ba.chunk.js.map",
+    "runtime-main.js": "/ArterraFluxDemo/static/js/runtime-main.92021a5b.js",
+    "runtime-main.js.map": "/ArterraFluxDemo/static/js/runtime-main.92021a5b.js.map",
+    "static/css/2.ef8e8b31.chunk.css": "/ArterraFluxDemo/static/css/2.ef8e8b31.chunk.css",
+    "static/js/2.896430e1.chunk.js": "/ArterraFluxDemo/static/js/2.896430e1.chunk.js",
+    "static/js/2.896430e1.chunk.js.map": "/ArterraFluxDemo/static/js/2.896430e1.chunk.js.map",
+    "index.html": "/ArterraFluxDemo/index.html",
+    "precache-manifest.924c7b32c8fe78749f93c37c353d6e57.js": "/ArterraFluxDemo/precache-manifest.924c7b32c8fe78749f93c37c353d6e57.js",
+    "service-worker.js": "/ArterraFluxDemo/service-worker.js",
+    "static/css/2.ef8e8b31.chunk.css.map": "/ArterraFluxDemo/static/css/2.ef8e8b31.chunk.css.map",
+    "static/js/2.896430e1.chunk.js.LICENSE.txt": "/ArterraFluxDemo/static/js/2.896430e1.chunk.js.LICENSE.txt",
+    "static/media/error.png": "/ArterraFluxDemo/static/media/error.636d6b5f.png",
+    "static/media/logo.png": "/ArterraFluxDemo/static/media/logo.ef2536e4.png",
+    "static/media/success.png": "/ArterraFluxDemo/static/media/success.ca1d9d6c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.92021a5b.js",
+    "static/css/2.ef8e8b31.chunk.css",
+    "static/js/2.896430e1.chunk.js",
+    "static/js/main.6f8d26ba.chunk.js"
+  ]
+}
