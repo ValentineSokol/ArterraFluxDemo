@@ -22,7 +22,8 @@ export const getMarkets = async (categories) => {
 	if (categories.length === undefined) throw new Error("categories need to be an array, pass an empty array if no category filters");
 	let markets = JSON.parse(localStorage.getItem('markets'));
 	if (!Array.isArray(markets)) markets = [];
-	markets.push(121); // hardcoded test market
+	markets.push({ marketId: 121 }); // hardcoded test market
+	console.log(markets);
 	return { markets }; 
 }
 
