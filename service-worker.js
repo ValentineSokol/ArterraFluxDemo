@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ArterraFluxDemo/precache-manifest.d93a136976e685a950e9bfe192bca8a2.js"
+  "/ArterraFluxDemo/precache-manifest.a1fde1aaa0fe380580102264fc22f52a.js"
 );
 
 self.addEventListener('message', (event) => {
