@@ -17,10 +17,11 @@ const OwnerPortalMarket = ({ market }) => {
 		console.log("resoluting...");
 		try {
 			setLoads(true);
-			await flux.resolute(market.id, winningOutcome);
+			await flux.resolute(market.id, winningOutcome, market.resolute_bond);
 		} 
 		catch (err){
 			console.error(err)
+			alert(err.message);
 		}
 		finally {
 			setLoads(false);
@@ -40,6 +41,9 @@ const OwnerPortalMarket = ({ market }) => {
 		{loads && <Loader />}
 		<Market>
 			<p>{market.id}. {market.description}</p>
+			<p>Resoluting markets is not available at the moment... </p>
+			{
+				/*
 			{!market.resoluted ? 
 			<>
 				<p>Resolutable: { market.end_time < new Date().getTime() ? "true" : "false" } </p>
@@ -51,6 +55,8 @@ const OwnerPortalMarket = ({ market }) => {
 				<p>Resoluted: {market.outcome_tags[market.winning_outcome]} </p>
 			</>	
 			}
+			*/
+		}
 			
 			<button onClick={deleteMarket}> Delete</button>
 		</Market>
